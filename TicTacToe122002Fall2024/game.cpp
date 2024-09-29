@@ -1,5 +1,7 @@
 #include <iostream>
 
+#include <cctype>
+
 #include "game.hpp"
 
 Game::Game(Rules *rules, Board *board, BoardPrinter *boardPrinter)
@@ -11,7 +13,7 @@ Game::Game(Rules *rules, Board *board, BoardPrinter *boardPrinter)
 
 void Game::start()
 {
-    int userInput;
+    string userInput;
     int turn = 1;
     bool valid = false;
     bool draw = false;
@@ -28,12 +30,18 @@ void Game::start()
         while (!valid)
         {
             cin >> userInput;
-            if (userInput > 9 || userInput < 1)
+            if (userInput.size() > 1){
+                cout << "Your input must be a valid integer.\n";
+            }
+            else if(isdigit(userInput.at(0)) == false){
+                cout << "Your input must be a valid integer.\n";
+            }
+            else if (stoi(userInput) > 9 || stoi(userInput) < 1)
             {
                 cout << "That is out of range!\n";
             }
             
-            else if (board->getValue(userInput) == "X" || board->getValue(userInput) == "O")
+            else if (board->getValue(stoi(userInput)) == "X" || board->getValue(stoi(userInput)) == "O")
             {
                 cout << "That space is already taken!\n";
             }
@@ -44,7 +52,7 @@ void Game::start()
                 break;
             }
         }
-        board->move(userInput, this->getCurrentMark());
+        board->move(stoi(userInput), this->getCurrentMark());
         cout << boardPrinter->print() << endl;
         this->toggleMark();
         turn++;
