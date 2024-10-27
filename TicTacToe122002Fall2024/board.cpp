@@ -20,8 +20,22 @@ string Board::getValue(int index)
   }
 }
 
-void Board::clear() {
-  for(int i = 0; i < 9; i++) {
+void Board::clear()
+{
+  for (int i = 0; i < 9; i++)
+  {
     this->marks[i] = to_string(i + 1);
   }
+}
+
+bool Board::full()
+{
+  for (int i = 0; i < 9; i++)
+  {
+    if (this->marks[i] == to_string(i + 1))
+    {
+      return false;
+    }
+  }
+  return true;
 }

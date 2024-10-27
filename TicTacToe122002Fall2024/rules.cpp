@@ -1,60 +1,91 @@
 #include "rules.hpp"
 
-Rules::Rules(Board *board) {
-    this->board = board;
-    winning_combos[0][0] = 1;
-    winning_combos[0][1] = 2;
-    winning_combos[0][2] = 3;
+#include <iostream>
 
-    winning_combos[1][0] = 1;
-    winning_combos[1][1] = 4;
-    winning_combos[1][2] = 7;
+using namespace std;
 
-    winning_combos[2][0] = 2;
-    winning_combos[2][1] = 5;
-    winning_combos[2][2] = 8;
+Rules::Rules(Board *board)
+{
+  this->board = board;
+  winningCombos[0][0] = 1;
+  winningCombos[0][1] = 2;
+  winningCombos[0][2] = 3;
 
-    winning_combos[3][0] = 3;
-    winning_combos[3][1] = 6;
-    winning_combos[3][2] = 9;
+  winningCombos[1][0] = 4;
+  winningCombos[1][1] = 5;
+  winningCombos[1][2] = 6;
 
-    winning_combos[4][0] = 4;
-    winning_combos[4][1] = 5;
-    winning_combos[4][2] = 6;
+  winningCombos[2][0] = 7;
+  winningCombos[2][1] = 8;
+  winningCombos[2][2] = 9;
 
-    winning_combos[5][0] = 7;
-    winning_combos[5][1] = 8;
-    winning_combos[5][2] = 9;
+  winningCombos[3][0] = 1;
+  winningCombos[3][1] = 4;
+  winningCombos[3][2] = 7;
 
-    winning_combos[6][0] = 1;
-    winning_combos[6][1] = 5;
-    winning_combos[6][2] = 9;
+  winningCombos[4][0] = 2;
+  winningCombos[4][1] = 5;
+  winningCombos[4][2] = 8;
 
-    winning_combos[7][0] = 3;
-    winning_combos[7][1] = 5;
-    winning_combos[7][2] = 7;
+  winningCombos[5][0] = 3;
+  winningCombos[5][1] = 6;
+  winningCombos[5][2] = 9;
+
+  winningCombos[6][0] = 1;
+  winningCombos[6][1] = 5;
+  winningCombos[6][2] = 9;
+
+  winningCombos[7][0] = 3;
+  winningCombos[7][1] = 5;
+  winningCombos[7][2] = 7;
 }
 
-bool Rules::inProgress() {
-    for(int i = 0; i < 8; i++) {
-        if(this->threeInARow(winning_combos[i][0], winning_combos[i][1], winning_combos[i][2])) {
-            return false;
-        }
+bool Rules::inProgress()
+{
+  for (int i = 0; i < 8; i++)
+  {
+    if (this->threeInARow(winningCombos[i][0], winningCombos[i][1], winningCombos[i][2]))
+    {
+      return false;
     }
-    
-    return true;
+  }
+  if (board->full())
+  {
+    return false;
+  }
+  return true;
 }
 
-string Rules::status() {
-    for(int i = 0; i < 8; i++) {
-        if(this->threeInARow(winning_combos[i][0], winning_combos[i][1], winning_combos[i][2])) {
-            return board->getValue(winning_combos[i][0]);
-        }
+int Rules::validator(int potentiallyInvalidInput)
+{
+  int validInput = potentiallyInvalidInput;
+  while ((board->getValue(validInput) == "X" || board->getValue(validInput) == "O") || (validInput < 0 || validInput > 9))
+  {
+    cout << "Invalid move, Please try again: ";
+    cin >> validInput;
+  }
+  return validInput;
+}
+
+string Rules::status()
+{
+  for (int i = 0; i < 8; i++)
+  {
+    if (this->threeInARow(winningCombos[i][0], winningCombos[i][1], winningCombos[i][2]))
+    {
+      return board->getValue(winningCombos[i][0]) + " wins the game!";
     }
-    
-    return "";
+  }
+
+  if (board->full())
+  {
+    return "Tie game!";
+  }
+
+  return "";
 }
 
-bool Rules::threeInARow(int index_one, int index_two, int index_three) {
-    return board->getValue(index_one) == board->getValue(index_two) && board->getValue(index_two) == board->getValue(index_three);
+bool Rules::threeInARow(int indexOne, int indexTwo, int indexThree)
+{
+  return board->getValue(indexOne) == board->getValue(indexTwo) && board->getValue(indexTwo) == board->getValue(indexThree);
 }

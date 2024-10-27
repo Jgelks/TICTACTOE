@@ -8,28 +8,22 @@ BoardPrinter::BoardPrinter(Board *board) {
 
 string BoardPrinter::print() {
     stringstream ss;
-    ss << this->edgeSpace
-       << board->getValue(1)
-       << this->verticalDivider
-       << board->getValue(2)
-       << this->verticalDivider
-       << board->getValue(3)
-       << this->edgeSpace
-       << this->horizontalDivider
-       << this->edgeSpace
-       << board->getValue(4)
-       << this->verticalDivider
-       << board->getValue(5)
-       << this->verticalDivider
-       << board->getValue(6)
-       << this->edgeSpace
-       << this->horizontalDivider
-       << this->edgeSpace
-       << board->getValue(7)
-       << this->verticalDivider
-       << board->getValue(8)
-       << this->verticalDivider
-       << board->getValue(9)
-       << this->edgeSpace;
+  
+	ss << this->edgeSpace;
+	for(int i = 1; i <= 8; i++)
+	{
+       ss << board->getValue(i);
+       if(i%3 == 0)
+       {
+    		ss  << this->edgeSpace
+				<< this->horizontalDivider
+				<< this->edgeSpace;
+   		}
+   		else
+    		ss << this->verticalDivider;
+	}
+	ss << board->getValue(9);
+	ss << this->edgeSpace;
+	
     return ss.str();
 }

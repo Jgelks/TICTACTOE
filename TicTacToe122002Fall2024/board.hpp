@@ -1,7 +1,4 @@
 #pragma once
-#ifndef BOARD_HPP
-#define BOARD_HPP
-#endif
 
 #include <string>
 
@@ -16,4 +13,5 @@ public:
   void move(int index, string mark);
   string getValue(int index);
   void clear();
+  bool full();
 };
