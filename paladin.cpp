@@ -1,0 +1,72 @@
+#include <iostream>
+
+#include "paladin.hpp"
+
+extern string playerOneMark;
+extern string playerTwoMark;
+
+Paladin::Paladin(Board *board, std::string mark)
+{
+  this->board = board;
+  this->mark = mark;
+}
+
+std::string Paladin::getMark()
+{
+  return mark;
+}
+
+void Paladin::prompt()
+{
+  std::cout << "I am a goblin! Rawr!" << std::endl;
+  std::cout << "You think you can beat me? Unlikely!" << std::endl;
+  std::cout << "(1) Make a move" << std::endl;
+  std::cout << "(2) Use your special power to destroy everything on the board" << std::endl;
+}
+
+int Paladin::selectOneOrTwo()
+{
+  int option;
+  std::cin >> option;
+  return option;
+}
+
+void Paladin::move()
+{
+  if (selectOneOrTwo() == 1)
+  {
+    std::cout << "Enter a move!" << std::endl;
+    string userInput;
+    std::cin >> userInput;
+    int validInput = this->validator(userInput);
+    board->move(validInput, this->mark);
+  }
+  else
+  {
+    std::cout << "Watch me gob!" << std::endl;
+    board->paladinAbility();
+  }
+}
+
+int Paladin::validator(string potentiallyInvalidInput)
+{
+  // while ((potentiallyInvalidInput.size() != 1) || !isdigit(potentiallyInvalidInput.at(0))){
+  //   cin.clear();
+  //   cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+  //   std::cout << "Invalid move, Please try againgobbb: "; 
+  //   cin >> potentiallyInvalidInput;
+  // }
+  // int validInput = stoi(potentiallyInvalidInput);
+
+  // TODO: Be careful! This will need to change if you are allowing users to select their own marks.
+  int validInput;
+  while (!isdigit(potentiallyInvalidInput.at(0)) || (potentiallyInvalidInput.size() != 1) || (board->getValue(stoi(potentiallyInvalidInput)) == playerOneMark || board->getValue(stoi(potentiallyInvalidInput)) == playerTwoMark) || (stoi(potentiallyInvalidInput) < 1 || stoi(potentiallyInvalidInput) > 9))
+  {
+    std::cout << "Invalid move, Please try againgob: ";
+    cin.clear();
+    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    std::cin >> potentiallyInvalidInput;
+  }
+  validInput = stoi(potentiallyInvalidInput);
+  return validInput;
+}

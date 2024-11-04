@@ -14,4 +14,7 @@ public:
   string getValue(int index);
   void clear();
   bool full();
+  void alchemistAbility(string mark);
+  void paladinAbility();
+  void ballistaAbility();
 };

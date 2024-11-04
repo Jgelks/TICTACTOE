@@ -6,8 +6,12 @@
 #include "tic_tac_toe.hpp"
 #include "board_printer.hpp"
 #include "main_menu.hpp"
-#include "goblin.hpp"
-#include "reaper.hpp"
+#include "paladin.hpp"
+#include "alchemist.hpp"
+#include "ballista.hpp"
+
+  string playerOneMark;
+  string playerTwoMark;
 
 void MainMenu::printWelcomeMessage()
 {
@@ -33,6 +37,8 @@ void MainMenu::buildAndPlayGame(int option)
 {
   Board *board = new Board();
   Rules *rules = new Rules(board);
+  // string playerOneMark;
+  // string playerTwoMark;
   BoardPrinter *boardPrinter = new BoardPrinter(board);
   if (option == 1)
   {
@@ -42,12 +48,14 @@ void MainMenu::buildAndPlayGame(int option)
   }
   else
   {
-    std::cout << "This might be a good time to allow each player to choose their marks!" << std::endl;
-    std::cout << "But I am just going to hardcode X and O for now..." << std::endl;
+    std::cout << "Player one choose your mark!" << std::endl;
+    std::cin >> playerOneMark;
+    std::cout << "Player two choose your mark!" << std::endl;
+    std::cin >> playerTwoMark;
     std::cout << "Also, helpful note for those of you reading this - be sure to update Peasant#validator to handle custom marks!" << std::endl;
 
-    Player *playerOne = new Goblin(board, "X");
-    Player *playerTwo = new Reaper(board, "O");
+    Player *playerOne = new Alchemist(board, playerOneMark);
+    Player *playerTwo = new Ballista(board, playerTwoMark);
 
     BattleTicTacToe *battleTicTacToe = new BattleTicTacToe(rules, board, boardPrinter, playerOne, playerTwo);
     battleTicTacToe->start();

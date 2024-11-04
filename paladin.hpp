@@ -4,15 +4,16 @@
 #include "board.hpp"
 #include "player.hpp"
 
-class Goblin : public Player
+class Paladin : public Player
 {
 private:
   Board *board;
   std::string mark;
-  int validator(int);
+  int validator(string);
+  int selectOneOrTwo();
 
 public:
-  Goblin(Board *, std::string);
+  Paladin(Board *, std::string);
   std::string getMark() override;
   void move() override;
   void prompt() override;
