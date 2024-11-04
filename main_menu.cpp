@@ -40,8 +40,7 @@ void MainMenu::buildAndPlayGame(int option)
 
   Board *board = new Board();
   Rules *rules = new Rules(board);
-  Player *playerOne;// = new Alchemist(board, playerOneMark);
-  Player *playerTwo;//= new Ballista(board, playerTwoMark);
+  
   // string playerOneMark;
   // string playerTwoMark;
   BoardPrinter *boardPrinter = new BoardPrinter(board);
@@ -57,42 +56,43 @@ void MainMenu::buildAndPlayGame(int option)
     std::cin >> playerOneMark;
     std::cout << "Player two choose your mark!" << std::endl;
     std::cin >> playerTwoMark;
-    std::cout << "Player 1 select your archetype:" << std::endl;
-    std::cout << "1 for Alchemist" << std::endl;
-    std::cout << "2 for Paladin" << std::endl;
-    std::cout << "3 for Ballista" << std::endl;
-    std::cin >> playerOneArchetype;
-    if (playerOneArchetype == 1)
-    {
-      Player *playerOne = new Alchemist(board, playerOneMark);
-    }
-    else if (playerOneArchetype == 2)
-    {
-      Player *playerOne = new Paladin(board, playerOneMark);
-    }
-    else if (playerOneArchetype == 3)
-    {
-      Player *playerOne = new Ballista(board, playerOneMark);
-    }
+    // std::cout << "Player 1 select your archetype:" << std::endl;
+    // std::cout << "1 for Alchemist" << std::endl;
+    // std::cout << "2 for Paladin" << std::endl;
+    // std::cout << "3 for Ballista" << std::endl;
+    // std::cin >> playerOneArchetype;
+    // if (playerOneArchetype == 1)
+    // {
+    //   Player *playerOne = new Alchemist(board, playerOneMark);
+    // }
+    // else if (playerOneArchetype == 2)
+    // {
+    //   Player *playerOne = new Paladin(board, playerOneMark);
+    // }
+    // else if (playerOneArchetype == 3)
+    // {
+    //   Player *playerOne = new Ballista(board, playerOneMark);
+    // }
 
-    std::cout << "Player 2 select your archetype:" << std::endl;
-    std::cout << "1 for Alchemist" << std::endl;
-    std::cout << "2 for Paladin" << std::endl;
-    std::cout << "3 for Ballista" << std::endl;
-    std::cin >> playerTwoArchetype;
-    if (playerTwoArchetype == 1)
-    {
-      Player *playerTwo = new Alchemist(board, playerTwoMark);
-    }
-    else if (playerOneArchetype == 2)
-    {
-      Player *playerTwo = new Paladin(board, playerTwoMark);
-    }
-    else if (playerOneArchetype == 3)
-    {
-      Player *playerTwo = new Ballista(board, playerTwoMark);
-    }
-    
+    // std::cout << "Player 2 select your archetype:" << std::endl;
+    // std::cout << "1 for Alchemist" << std::endl;
+    // std::cout << "2 for Paladin" << std::endl;
+    // std::cout << "3 for Ballista" << std::endl;
+    // std::cin >> playerTwoArchetype;
+    // if (playerTwoArchetype == 1)
+    // {
+    //   Player *playerTwo = new Alchemist(board, playerTwoMark);
+    // }
+    // else if (playerOneArchetype == 2)
+    // {
+    //   Player *playerTwo = new Paladin(board, playerTwoMark);
+    // }
+    // else if (playerOneArchetype == 3)
+    // {
+    //   Player *playerTwo = new Ballista(board, playerTwoMark);
+    // }
+    Player *playerOne = new Alchemist(board, playerOneMark);
+  Player *playerTwo = new Ballista(board, playerTwoMark);
 
     BattleTicTacToe *battleTicTacToe = new BattleTicTacToe(rules, board, boardPrinter, playerOne, playerTwo);
     battleTicTacToe->start();
