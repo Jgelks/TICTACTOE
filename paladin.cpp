@@ -18,8 +18,7 @@ std::string Paladin::getMark()
 
 void Paladin::prompt()
 {
-  std::cout << "I am a goblin! Rawr!" << std::endl;
-  std::cout << "You think you can beat me? Unlikely!" << std::endl;
+  std::cout << "I'm ready to smite my foes!" << std::endl;
   std::cout << "(1) Make a move" << std::endl;
   std::cout << "(2) Use your special power to destroy everything on the board" << std::endl;
 }
@@ -43,7 +42,7 @@ void Paladin::move()
   }
   else
   {
-    std::cout << "Watch me gob!" << std::endl;
+    std::cout << "Give me power!" << std::endl;
     board->paladinAbility();
   }
 }
@@ -62,7 +61,7 @@ int Paladin::validator(string potentiallyInvalidInput)
   int validInput;
   while (!isdigit(potentiallyInvalidInput.at(0)) || (potentiallyInvalidInput.size() != 1) || (board->getValue(stoi(potentiallyInvalidInput)) == playerOneMark || board->getValue(stoi(potentiallyInvalidInput)) == playerTwoMark) || (stoi(potentiallyInvalidInput) < 1 || stoi(potentiallyInvalidInput) > 9))
   {
-    std::cout << "Invalid move, Please try againgob: ";
+    std::cout << "Invalid move, Please try again: ";
     cin.clear();
     cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     std::cin >> potentiallyInvalidInput;

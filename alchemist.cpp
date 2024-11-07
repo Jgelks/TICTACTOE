@@ -18,11 +18,10 @@ std::string Alchemist::getMark()
 
 void Alchemist::prompt()
 {
-  std::cout << "Foolish mortal..." << std::endl;
   std::cout << "I am the greatest alchemist to ever live!" << std::endl;
   std::cout << "Do you want to..." << std::endl;
   std::cout << "(1) Make a move" << std::endl;
-  std::cout << "(2) Use your special power to destroy everything on the board" << std::endl;
+  std::cout << "(2) Use your special power to transmute two marks" << std::endl;
 }
 
 int Alchemist::selectOneOrTwo()
@@ -44,7 +43,7 @@ void Alchemist::move()
   }
   else
   {
-    std::cout << "Behold my power..." << std::endl;
+    std::cout << "Watch this!" << std::endl;
     board->alchemistAbility(mark);
   }
 }
@@ -56,7 +55,7 @@ int Alchemist::validator(string potentiallyInvalidInput)
  int validInput;
   while (!isdigit(potentiallyInvalidInput.at(0)) || (potentiallyInvalidInput.size() != 1) || (board->getValue(stoi(potentiallyInvalidInput)) == playerOneMark || board->getValue(stoi(potentiallyInvalidInput)) == playerTwoMark) || (stoi(potentiallyInvalidInput) < 1 || stoi(potentiallyInvalidInput) > 9))
   {
-    std::cout << "Invalid move, Please try againgob: ";
+    std::cout << "Invalid move, Please try again: ";
     cin.clear();
     cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     std::cin >> potentiallyInvalidInput;

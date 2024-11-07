@@ -40,9 +40,7 @@ void MainMenu::buildAndPlayGame(int option)
 
   Board *board = new Board();
   Rules *rules = new Rules(board);
-  
-  // string playerOneMark;
-  // string playerTwoMark;
+
   BoardPrinter *boardPrinter = new BoardPrinter(board);
   if (option == 1)
   {
@@ -52,47 +50,28 @@ void MainMenu::buildAndPlayGame(int option)
   }
   else
   {
+   
+    bool P1markValid = false;
+    bool P2markValid = false;
+    while(!P1markValid){
     std::cout << "Player one choose your mark!" << std::endl;
     std::cin >> playerOneMark;
+    if (playerOneMark.size() != 1){
+      std::cout << "Your mark must be one character!" << endl;
+    }
+    else{P1markValid = true;}
+    }
+    while(!P2markValid){
+    
     std::cout << "Player two choose your mark!" << std::endl;
     std::cin >> playerTwoMark;
-    // std::cout << "Player 1 select your archetype:" << std::endl;
-    // std::cout << "1 for Alchemist" << std::endl;
-    // std::cout << "2 for Paladin" << std::endl;
-    // std::cout << "3 for Ballista" << std::endl;
-    // std::cin >> playerOneArchetype;
-    // if (playerOneArchetype == 1)
-    // {
-    //   Player *playerOne = new Alchemist(board, playerOneMark);
-    // }
-    // else if (playerOneArchetype == 2)
-    // {
-    //   Player *playerOne = new Paladin(board, playerOneMark);
-    // }
-    // else if (playerOneArchetype == 3)
-    // {
-    //   Player *playerOne = new Ballista(board, playerOneMark);
-    // }
-
-    // std::cout << "Player 2 select your archetype:" << std::endl;
-    // std::cout << "1 for Alchemist" << std::endl;
-    // std::cout << "2 for Paladin" << std::endl;
-    // std::cout << "3 for Ballista" << std::endl;
-    // std::cin >> playerTwoArchetype;
-    // if (playerTwoArchetype == 1)
-    // {
-    //   Player *playerTwo = new Alchemist(board, playerTwoMark);
-    // }
-    // else if (playerOneArchetype == 2)
-    // {
-    //   Player *playerTwo = new Paladin(board, playerTwoMark);
-    // }
-    // else if (playerOneArchetype == 3)
-    // {
-    //   Player *playerTwo = new Ballista(board, playerTwoMark);
-    // }
+    if (playerTwoMark.size() != 1 || playerTwoMark == playerOneMark){
+      std::cout << "Your mark must be one character and cannot be the same as Player One!" << endl;
+    }
+    else{P2markValid = true;}
+    }
     Player *playerOne = new Alchemist(board, playerOneMark);
-  Player *playerTwo = new Ballista(board, playerTwoMark);
+    Player *playerTwo = new Ballista(board, playerTwoMark);
 
     BattleTicTacToe *battleTicTacToe = new BattleTicTacToe(rules, board, boardPrinter, playerOne, playerTwo);
     battleTicTacToe->start();

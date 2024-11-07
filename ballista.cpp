@@ -18,11 +18,10 @@ std::string Ballista::getMark()
 
 void Ballista::prompt()
 {
-  std::cout << "Foolish mortal..." << std::endl;
-  std::cout << "I am the ballister of worlds..." << std::endl;
+  std::cout << "I'm ready to fire..." << std::endl;
   std::cout << "Do you want to..." << std::endl;
   std::cout << "(1) Make a move" << std::endl;
-  std::cout << "(2) Use your special power to destroy everything on the board" << std::endl;
+  std::cout << "(2) Use your special power to destroy a row or column of the board" << std::endl;
 }
 
 int Ballista::selectOneOrTwo()
@@ -44,7 +43,7 @@ void Ballista::move()
   }
   else
   {
-    std::cout << "Behold my ballisting power..." << std::endl;
+    std::cout << "Behold the power of technology!" << std::endl;
     board->ballistaAbility();
   }
 }
@@ -54,7 +53,7 @@ int Ballista::validator(string potentiallyInvalidInput)
  int validInput;
   while (!isdigit(potentiallyInvalidInput.at(0)) || (potentiallyInvalidInput.size() != 1) || (board->getValue(stoi(potentiallyInvalidInput)) == playerOneMark || board->getValue(stoi(potentiallyInvalidInput)) == playerTwoMark) || (stoi(potentiallyInvalidInput) < 1 || stoi(potentiallyInvalidInput) > 9))
   {
-    std::cout << "Invalid move, Please try againgob: ";
+    std::cout << "Invalid move, Please try again: ";
     cin.clear();
     cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     std::cin >> potentiallyInvalidInput;
