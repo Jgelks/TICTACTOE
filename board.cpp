@@ -173,6 +173,16 @@ cin >> indexToStartBallista;
 if(indexToStartBallista == 1 ){
   cout << "Would you like to launch your ballista to 3 or 7?" << endl;
   cin >> directionChoice;
+  if (directionChoice == 3){
+    for(int i = 0; i < 3; i++){
+    this->marks[indexToStartBallista - 1 + i] = to_string(i + indexToStartBallista);
+  }
+  }
+  else if (directionChoice == 7){
+    for(int i = 0; i < 7; i = i + 3){
+    this->marks[indexToStartBallista - 1 + i] = to_string(i + indexToStartBallista);
+  }
+  }
 }
 if(indexToStartBallista == 2 || indexToStartBallista == 3){
   for(int i = 0; i < 7; i = i + 3){

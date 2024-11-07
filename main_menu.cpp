@@ -86,6 +86,7 @@ void MainMenu::buildAndPlayGame(int option)
     else if(playerOneArchetype == 3){
       playerOne = new Paladin(board, playerOneMark);
     }
+    
     cout << "Player two " << archetypeChoice << endl;
 
     cin >> playerTwoArchetype;
