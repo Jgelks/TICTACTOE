@@ -37,6 +37,7 @@ void MainMenu::buildAndPlayGame(int option)
 {
   int playerOneArchetype;
   int playerTwoArchetype;
+  string archetypeChoice = "choose your archetype:\n1. Alchemist\n2. Ballista\n3. Paladin";
 
   Board *board = new Board();
   Rules *rules = new Rules(board);
@@ -70,8 +71,34 @@ void MainMenu::buildAndPlayGame(int option)
     }
     else{P2markValid = true;}
     }
-    Player *playerOne = new Alchemist(board, playerOneMark);
-    Player *playerTwo = new Ballista(board, playerTwoMark);
+
+    Player *playerOne = nullptr;
+    Player *playerTwo = nullptr;
+    cout << "Player one " << archetypeChoice << endl;
+
+    cin >> playerOneArchetype;
+    if (playerOneArchetype == 1){
+      playerOne = new Alchemist(board, playerOneMark);
+    }
+    else if(playerOneArchetype == 2){
+      playerOne = new Ballista(board, playerOneMark);
+    }
+    else if(playerOneArchetype == 3){
+      playerOne = new Paladin(board, playerOneMark);
+    }
+    cout << "Player two " << archetypeChoice << endl;
+
+    cin >> playerTwoArchetype;
+    if (playerTwoArchetype == 1){
+      playerTwo = new Alchemist(board, playerTwoMark);
+    }
+    else if(playerTwoArchetype == 2){
+      playerTwo = new Ballista(board, playerTwoMark);
+    }
+    else if(playerTwoArchetype == 3){
+      playerTwo = new Paladin(board, playerTwoMark);
+    }
+    
 
     BattleTicTacToe *battleTicTacToe = new BattleTicTacToe(rules, board, boardPrinter, playerOne, playerTwo);
     battleTicTacToe->start();
