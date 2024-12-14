@@ -48,7 +48,6 @@ void Alchemist::move()
   }
 }
 
-//   // TODO: Be careful! This will need to change if you are allowing users to select their own marks.
 
 int Alchemist::validator(string potentiallyInvalidInput)
 {

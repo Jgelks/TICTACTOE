@@ -1,6 +1,8 @@
 #include <iostream>
 
 #include "tic_tac_toe.hpp"
+extern string playerOneMark;
+extern string playerTwoMark;
 
 TicTacToe::TicTacToe(Rules *rules, Board *board, BoardPrinter *boardPrinter)
 {
@@ -12,6 +14,9 @@ TicTacToe::TicTacToe(Rules *rules, Board *board, BoardPrinter *boardPrinter)
 void TicTacToe::start()
 {
   int userInput;
+  playerOneMark = "X";
+  playerTwoMark = "O";
+  
   cout << boardPrinter->print() << endl;
   while (this->rules->inProgress())
   {

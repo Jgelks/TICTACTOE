@@ -49,15 +49,7 @@ void Paladin::move()
 
 int Paladin::validator(string potentiallyInvalidInput)
 {
-  // while ((potentiallyInvalidInput.size() != 1) || !isdigit(potentiallyInvalidInput.at(0))){
-  //   cin.clear();
-  //   cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-  //   std::cout << "Invalid move, Please try againgobbb: "; 
-  //   cin >> potentiallyInvalidInput;
-  // }
-  // int validInput = stoi(potentiallyInvalidInput);
 
-  // TODO: Be careful! This will need to change if you are allowing users to select their own marks.
   int validInput;
   while (!isdigit(potentiallyInvalidInput.at(0)) || (potentiallyInvalidInput.size() != 1) || (board->getValue(stoi(potentiallyInvalidInput)) == playerOneMark || board->getValue(stoi(potentiallyInvalidInput)) == playerTwoMark) || (stoi(potentiallyInvalidInput) < 1 || stoi(potentiallyInvalidInput) > 9))
   {

@@ -1,5 +1,5 @@
 #include <iostream>
-
+#include <fstream>
 #include "battle_tic_tac_toe.hpp"
 #include "board.hpp"
 #include "rules.hpp"
@@ -12,6 +12,10 @@
 
 string playerOneMark;
 string playerTwoMark;
+extern int playerOneWins;
+extern int playerTwoWins;
+extern int totalTies;
+extern int totalGamesPlayed;
 
 void MainMenu::printWelcomeMessage()
 {
@@ -121,6 +125,11 @@ void MainMenu::playAgainOrExit()
   }
   else
   {
+    std::ofstream outFile("gameReport.txt");
+    outFile << "Player one has won " << playerOneWins << " times." << std::endl;
+    outFile << "Player two has won " << playerTwoWins << " times." << std::endl;
+    outFile << "There has been " << totalTies << " total tie/s." << std::endl;
+    outFile << "There has been " << totalGamesPlayed << " total games played." << std::endl;
     printExitMessage();
   }
 }

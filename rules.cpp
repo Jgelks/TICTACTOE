@@ -1,8 +1,11 @@
 #include "rules.hpp"
-
+#include "player.hpp"
 #include <iostream>
 
 using namespace std;
+
+extern string playerOneMark;
+extern string playerTwoMark;
 
 Rules::Rules(Board *board)
 {
@@ -40,6 +43,10 @@ Rules::Rules(Board *board)
   winningCombos[7][2] = 7;
 }
 
+int playerOneWins = 0;
+int playerTwoWins = 0;
+int totalTies = 0;
+int totalGamesPlayed = 0;
 bool Rules::inProgress()
 {
   for (int i = 0; i < 8; i++)
@@ -67,18 +74,28 @@ int Rules::validator(int potentiallyInvalidInput)
   return validInput;
 }
 
+
 string Rules::status()
 {
   for (int i = 0; i < 8; i++)
   {
     if (this->threeInARow(winningCombos[i][0], winningCombos[i][1], winningCombos[i][2]))
     {
+      if(board->getValue(winningCombos[i][0]) == playerOneMark){
+        playerOneWins++;
+      }
+      else{playerTwoWins++;}
+      
+      totalGamesPlayed++;
+      
       return board->getValue(winningCombos[i][0]) + " wins the game!";
     }
   }
 
   if (board->full())
   {
+    totalGamesPlayed++;
+    totalTies++;
     return "Tie game!";
   }
 

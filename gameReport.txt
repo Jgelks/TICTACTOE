@@ -1,0 +1,4 @@
+Player one has won 1 times.
+Player two has won 0 times.
+There has been 1 total ties.
+There has been 2 total games played.
